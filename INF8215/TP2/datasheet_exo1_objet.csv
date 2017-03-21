@@ -1,0 +1,23 @@
+,electronique,cuisine,leger,bruit,nettoyer,Tient dans une main,Sert  t-il contenir d’autre choses,Liquide,Contenir info
+Aspirateur,y,n,y,y,y,n,y,n,n
+Telephone,y,yn,y,y,n,y,n,n,y
+Balai,n,n,y,n,y,n,n,n,n
+Assiette,n,y,y,n,n,n,y,n,n
+Cuisiniere,y,y,n,n,n,n,y,n,n
+Grille-pain,y,y,y,n,n,n,y,n,n
+Casserole,n,y,y,n,n,n,y,y,n
+Detergent,n,y,y,n,y,y,n,y,n
+Cle,n,n,y,n,n,y,n,n,n
+Sac a dos,n,n,y,n,n,n,y,n,n
+Lampe,n,yn,yn,n,n,n,n,n,n
+Ordinateur,y,n,n,y,n,n,n,n,y
+Fourchette,n,y,y,n,n,y,n,n,n
+Cactus,n,n,y,n,n,n,n,n,n
+Micro-onde,y,y,n,y,n,n,y,n,n
+cafetier,y,y,y,y,n,n,y,y,n
+table,n,y,n,n,n,n,n,n,n
+shampoing,n,n,y,n,y,y,n,y,n
+Lit,n,n,n,n,n,n,n,n,n
+Porte-feuille,n,n,y,n,n,y,y,n,y
+Piano,n,n,n,y,n,n,n,n,n
+Papier,n,n,y,n,n,y,n,n,y
