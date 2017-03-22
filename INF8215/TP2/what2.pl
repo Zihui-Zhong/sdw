@@ -173,8 +173,8 @@ isliquid(no,balai).
 isliquid(no,assiette).
 isliquid(no,cuisiniere).
 isliquid(no,grillepain).
-isliquid(oui,casserole).
-isliquid(oui,detergent).
+isliquid(yes,casserole).
+isliquid(yes,detergent).
 isliquid(no,cle).
 isliquid(no,sacados).
 isliquid(no,lampe).
@@ -182,9 +182,9 @@ isliquid(no,ordinateur).
 isliquid(no,fourchette).
 isliquid(no,cactus).
 isliquid(no,microonde).
-isliquid(oui,cafetiere).
+isliquid(yes,cafetiere).
 isliquid(no,table).
-isliquid(oui,shampoing).
+isliquid(yes,shampoing).
 isliquid(no,lit).
 isliquid(no,portefeuille).
 isliquid(no,piano).
@@ -250,14 +250,37 @@ papier]).
 askQuestion([Pred,Question],PosIn,PosOut):-
 	write(Question),
 	nl,read(Reponse),
- 	filter(PosIn,PosOut,Pred,Reponse),
-	write(PosIn),nl,	
-	write(PosOut),nl.
+ 	filter(PosIn,PosOut,Pred,Reponse).
 
 
-getFirstQuestion([H|T],H,T).
+%getFirstQuestion([H|T],H,T).
 
-bot(X) :- questions(ListQuestions),
+getFirstQuestion(Questions,Chosen,Reste,Pos):-
+	getFirstQuestion(Questions,_,Chosen,Reste,Pos).
+
+getFirstQuestion([[Pred, Question]], Ratio, Chosen, Reste,Pos) :-
+  Chosen = [Pred, Question],
+  Reste = [],
+  getRatio(Pos,Pred, Ratio).
+
+getFirstQuestion([[Pred, Question]|Tail], LowestRatio, Chosen, Reste,Pos) :-
+  getRatio(Pos,Pred, Ratio),
+  getFirstQuestion(Tail, NewBestRatio, NewBest, NewList,Pos),
+  (
+    Ratio > NewBestRatio ->
+      LowestRatio = Ratio,
+      Reste = Tail,
+      Chosen = [Pred, Question];
+    otherwise ->
+      LowestRatio = NewBestRatio,
+      append(NewList, [[Pred, Question]], Reste),
+      Chosen = NewBest
+  ).
+
+
+objet(X) :- write('Veuillez penser a un objet de la liste! Les reponses sont yes. et no.'),
+	nl,	
+	questions(ListQuestions),
 	possibilities(Pos),
 	iteration(X,ListQuestions,Pos).
 
@@ -275,7 +298,7 @@ iteration(X,ListQuestions,Pos):-
 	write('NO SUCH OBJECT!'),
 	X= Pos.
 iteration(X,ListQuestions,Pos):-
-	getFirstQuestion(ListQuestions,Question,Rest),
+	getFirstQuestion(ListQuestions,Question,Rest,Pos),
 	askQuestion(Question,Pos,PosOut),
 	iteration(X,Rest,PosOut	).
 
@@ -293,4 +316,18 @@ filter([L|List],Filtered,Pred,Val) :-
     	filter(List,Filtered,Pred,Val).
 
 
+getRatio(Pos,Pred,Ratio):-
+	filter(Pos,Positif,Pred,yes),
+	filter(Pos,Negatif,Pred,no),
+	length(Positif, NumPos),
+	length(Negatif, NumNeg),
+	genRatio(NumPos,NumNeg,Ratio).
+	
+genRatio(A,B,Out):-
+	A<B,
+	Out is A/B.
+	
+genRatio(A,B,Out):-
+	B<A,
+	Out is B/A.
 
