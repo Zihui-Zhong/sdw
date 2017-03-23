@@ -214,15 +214,15 @@ isinfo(no,piano).
 isinfo(yes,papier).
 
 questions([
-[iselectro,'Electronique'],
-[iscuisine,'cuisine'],
-[isleger,'leger'],
-[isbruit,'bruit'],
-[isnettoyer,'nettoyer'],
-[ismain,'main'],
-[isconteneur,'conteneur'],
-[isliquid,'liendirectliquid'],
-[isinfo,'info']]).
+[iselectro,'Est-ce que c\'est un objet electrique/electronique?'],
+[iscuisine,'Est-ce qu\'on le retrouve dans la cuisine?'],
+[isleger,'Est-ce qu\'il est leger?'],
+[isbruit,'Est-ce qu\'il fait du bruit?'],
+[isnettoyer,'Est-ce qu\'on s\'en sert pour nettoyer?'],
+[ismain,'Est-ce qu\'il tient dans une main?'],
+[isconteneur,'Est-ce qu\'il peut contenir de quoi?'],
+[isliquid,'Est-ce qu\'on s\'en sert avec des liquide ou c\'est liquide?'],
+[isinfo,'Est-ce qu\'on peut garder de l\'information dessus/dedans?']]).
 
 possibilities([aspirateur,
 telephone,
